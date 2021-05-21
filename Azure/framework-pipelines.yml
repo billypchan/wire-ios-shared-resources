@@ -2,8 +2,6 @@ jobs:
   - job: Release
     pool:
       vmImage: "macOS-10.15"
-    dependsOn: Test
-    condition: and(succeeded(), startsWith(variables['Build.SourceBranch'], 'refs/tags/'))
     steps:
     - template: release-framework/release-framework.yml
       parameters:

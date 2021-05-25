@@ -22,8 +22,8 @@ platform :ios do
         config = Config.read_current()
         carthage_config = CarthageConfig.new(config.framework)
     
-        sh "rm -f ../#{carthage_config.archive_name} || true"
-        sh "rm -rf ../#{carthage_config.build_result} || true"
+#         sh "rm -f ../#{carthage_config.archive_name} || true"
+#         sh "rm -rf ../#{carthage_config.build_result} || true"
 #         carthage(
 #             command: "build",
 #             no_skip_current: true,

@@ -5,8 +5,13 @@ pipeline {
     }
     parameters {
         string(defaultValue: "develop", description: 'Branch to use', name: 'branch_to_build')
-        string(defaultValue: "12.4", description: 'XCode version to use (11.4.1/12.4)', name: 'xcode_version')
+        string(defaultValue: "12.4", description: 'XCode version to use (12.4)', name: 'xcode_version')
         string(defaultValue: "No", description: 'Copy Carthage folder from cache? Enter Yes to enable (NOTICE: it builds faster, but may cause build issues)', name: 'cache_carthage')
+        booleanParam(
+            defaultValue: true, 
+            description: 'set to false to skip tests to speed up pipeline', 
+            name: 'bool_test'
+        )
     }
 
     stages {
@@ -15,6 +20,7 @@ pipeline {
                 build(
                     job: 'client-ios-build-pipeline', 
                     parameters: [
+                        string(name: 'bool_test', value: bool_test), 
                         string(name: 'cache_carthage', value: cache_carthage), 
                         string(name: 'xcode_version', value: xcode_version), 
                         string(name: 'branch_to_build', value: branch_to_build), 
